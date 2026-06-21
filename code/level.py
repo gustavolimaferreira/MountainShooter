@@ -11,7 +11,7 @@ from code.const import COLOR_WHITE, EVENT_ENEMY, MENU_OPTION, SPAWN_TIME
 from code.const import WIN_HEIGHT
 from code.entity import Entity
 from code.entityFactory import EntityFactory
-
+from code.entityMediator import EntityMediator
 
 
 class Level:
@@ -27,7 +27,6 @@ class Level:
             self.entity_list.append(EntityFactory.get_entity('Player2'))
         pygame.time.set_timer(EVENT_ENEMY, SPAWN_TIME)
         
-
         MENU_OPTION
     def run(self, ):
         pygame.mixer_music.load(f'./asset/{self.name}.mp3')
@@ -46,10 +45,14 @@ class Level:
                     choice = random.choice(('Enemy1', 'Enemy2'))
                     self.entity_list.append(EntityFactory.get_entity(choice))
 
+            # print text
             self.level_text(14, f'{self.name} - Timeout: {self.timeout / 1000 :.1f}s', COLOR_WHITE, (10, 5))
             self.level_text(14, f'fps:{clock.get_fps() :.0f}', COLOR_WHITE, (10, WIN_HEIGHT - 35))
             self.level_text(14, f'entidades: {len(self.entity_list)}', COLOR_WHITE, (10, WIN_HEIGHT - 20))
             pygame.display.flip()
+            # collisions
+            EntityMediator.verify_collision(entity_list=self.entity_list)
+            EntityMediator.verify_health(entity_list=self.entity_list)
         pass
 
 
