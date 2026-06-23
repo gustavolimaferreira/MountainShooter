@@ -1,12 +1,21 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from Entity1 import Entity1
+from code.const import ENTITY_SHOT_DELAY, ENTITY_SPEED, WIN_WIDTH
+from code.enemyShot import EnemyShot
+from code.entity import Entity
 
 
-class Enemy(Entity1):
-    def __init__(self):
-        pass
+class Enemy(Entity):
+    def __init__(self, name: str, position: tuple ):
+        super().__init__(name, position)
+        self.shot_delay = ENTITY_SHOT_DELAY[self.name] 
 
     def move(self, ):
-        pass
+        self.rect.centerx -= ENTITY_SPEED[self.name]
+        
+    def shoot(self):
+        self.shot_delay -= 1
+        if self.shot_delay == 0:
+            self.shot_delay = ENTITY_SHOT_DELAY[self.name]
+            return EnemyShot(name=f'{self.name}Shot', position=(self.rect.centerx, self.rect.centery))
