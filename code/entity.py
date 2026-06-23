@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 
 import pygame.image
 
-from code.const import ENTITY_DAMAGE, ENTITY_HEALTH
+from code.const import ENTITY_DAMAGE, ENTITY_HEALTH, ENTITY_SCORE
 
 class Entity(ABC):
     def __init__(self, name: str, position: tuple):
@@ -14,6 +14,7 @@ class Entity(ABC):
         self.speed = 0
         self.health = ENTITY_HEALTH[self.name]
         self.damage = ENTITY_DAMAGE[self.name]
+        self.score = ENTITY_SCORE[self.name]
         self.last_dmg = 'None'
 
     @abstractmethod

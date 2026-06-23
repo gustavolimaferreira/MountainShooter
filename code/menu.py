@@ -4,7 +4,7 @@ import pygame.image
 from pygame import Surface, Rect
 from pygame.font import Font
 
-from code.const import COLOR_ORANGE, COLOR_WHITE, COLOR_YELLOW, MENU_OPTION, WIN_HEIGHT, WIN_WIDTH
+from code.const import C_ORANGE, C_WHITE, C_YELLOW, MENU_OPTION, WIN_HEIGHT, WIN_WIDTH
 
 
 
@@ -21,14 +21,14 @@ class Menu:
         while True:
             # DRAW IMAGES
             self.window.blit(source=self.surf, dest=self.rect)
-            self.menu_text(text_size=50, text='Mountain', text_color=COLOR_ORANGE, text_center_pos=(WIN_WIDTH/2, 70))
-            self.menu_text(text_size=50, text='Shooter', text_color=COLOR_ORANGE, text_center_pos=(WIN_WIDTH/2, 120))
+            self.menu_text(text_size=50, text='Mountain', text_color=C_ORANGE, text_center_pos=(WIN_WIDTH/2, 70))
+            self.menu_text(text_size=50, text='Shooter', text_color=C_ORANGE, text_center_pos=(WIN_WIDTH/2, 120))
 
             for i in range(len(MENU_OPTION)):
                 if i == menu_option:
-                    self.menu_text(text_size=20, text=MENU_OPTION[i], text_color=COLOR_YELLOW, text_center_pos=(WIN_WIDTH/2, 200 + i*25))                  
+                    self.menu_text(text_size=20, text=MENU_OPTION[i], text_color=C_YELLOW, text_center_pos=(WIN_WIDTH/2, 200 + i*25))                  
                 else:
-                    self.menu_text(text_size=20, text=MENU_OPTION[i], text_color=COLOR_WHITE, text_center_pos=(WIN_WIDTH/2, 200 + i*25))
+                    self.menu_text(text_size=20, text=MENU_OPTION[i], text_color=C_WHITE, text_center_pos=(WIN_WIDTH/2, 200 + i*25))
             
             #Check for all events
             for event in pygame.event.get():
